@@ -2,26 +2,60 @@
 
 # "Title With Slug" Input - Easy Permalink Slugs for Filament Forms (PHP / Laravel / Livewire)
 
-This package for FilamentPHP adds the form component `TitleAndSlugInput` which allows to
-edit titles and slugs easily.
+This package is a fork of [altwaireb/filament-title-and-slug](https://github.com/altwaireb/filament-title-and-slug), adapted specifically for use with our `elfeffe/slug-rewrite` package. It provides a streamlined API and automatic integration with the slug-rewrite system.
 
-It is inspired by the classic **WordPress title & slug** implementation.
+## About This Fork
 
-The plugin is fully configurable. You can change all labels, use your own slugifier, use a route() to generate the "
-View" link, hide the host name, and many more. Read the [full documentation](#installation)
+This fork simplifies the usage when working with models that use the `HasSlugRewrite` trait from the `elfeffe/slug-rewrite` package. When used with compatible models, it:
+
+- Automatically detects controller and action properties from the model
+- Handles slug uniqueness through the slug-rewrite system
+- Preserves manually entered slugs while ensuring uniqueness
+- Removes unnecessary UI elements for a cleaner interface
+
+## Basic Usage
 
 ```php
-TitleAndSlugInput::make(
-    fieldTitle: 'title', // The name of the field in your model that stores the title.
-    fieldSlug: 'slug', // The name of the field in your model that will store the slug.
-),
+use Elfeffe\FilamentTitleAndSlug\Forms\Components\TitleAndSlugInput;
+
+class PostResource extends Resource
+{
+    public static function form(Form $form): Form
+    {
+        return $form->schema([
+            TitleAndSlugInput::make(
+                fieldTitle: 'name',  // Your model's title field
+                fieldSlug: 'slug',   // Your model's slug field 
+                titleLabel: 'Title', // Optional label for the title
+            )
+            ->columnSpan(2)
+            ->debounce(300)
+        ]);
+    }
+}
 ```
 
-The output looks like this: (Watch **[&raquo; Demo Video &laquo;](https://www.youtube.com/watch?v=5u1Nepm2NiI)**)
+The component will automatically:
+1. Generate unique slugs when you type in the title field
+2. Respect manually entered slugs but ensure they're unique
+3. Handle slugs with proper formatting and uniqueness checks
+4. Work seamlessly with the slug-rewrite system
 
-<img src="docs/examples/camya-filament-title-with-slug_example_change-fields_01.jpg" width="600" />
+Your model should use the `HasSlugRewrite` trait and define `controller` and `action` properties:
 
-<img src="docs/examples/camya-filament-title-with-slug_example_change-fields_02.jpg" width="600" />
+```php
+use Elfeffe\SlugRewrite\Traits\HasSlugRewrite;
+
+class Post extends Model
+{
+    use HasSlugRewrite;
+    
+    public $controller = PostController::class;
+    public $action = 'show';
+    
+    // ...rest of your model
+}
+```
 
 ## Features
 
