@@ -588,8 +588,9 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Abdulmajeed Altwaireb](https://github.com/altwaireb) (Developer)
-- [Andreas Scheibel (camya)](https://github.com/camya) (Developer at  [camya.com](https://www.camya.com)
+- [Federico Reggiani](https://github.com/elfeffe) (Author of this fork)
+- [Abdulmajeed Altwaireb](https://github.com/altwaireb) (Original developer)
+- [Andreas Scheibel (camya)](https://github.com/camya) (Original package developer at [camya.com](https://www.camya.com)
   / [epicbundle.com](https://www.epicbundle.com))
 
 
