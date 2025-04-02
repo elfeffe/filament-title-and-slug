@@ -1,0 +1,82 @@
+{
+    "name": "elfeffe/filament-title-and-slug",
+    "description": "Easy Permalink Slugs for the FilamentPHP Form Builder (PHP / Laravel / Livewire)",
+    "keywords": [
+        "elfeffe",
+        "laravel",
+        "filament",
+        "slug",
+        "permalink",
+        "filament-title-and-slug"
+    ],
+    "homepage": "https://github.com/elfeffe/filament-title-and-slug",
+    "support": {
+        "issues": "https://github.com/elfeffe/filament-title-and-slug/issues",
+        "source": "https://github.com/elfeffe/filament-title-and-slug"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Abdulmajeed Altwaireb",
+            "email": "altwaireb@gmail.com",
+            "role": "Original Developer"
+        },
+        {
+            "name": "Federico Cannas",
+            "email": "info@neoteo.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "filament/filament": "^3.0",
+        "spatie/laravel-package-tools": "^1.16",
+        "illuminate/contracts": "^11.0|^12.0",
+        "illuminate/database": "^11.0|^12.0",
+        "illuminate/support": "^11.0|^12.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.13",
+        "nunomaduro/collision": "^8.1",
+        "orchestra/testbench": "^9.0",
+        "pestphp/pest": "^3.0",
+        "pestphp/pest-plugin-arch": "^3.0",
+        "pestphp/pest-plugin-laravel": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Elfeffe\\FilamentTitleAndSlug\\": "src/",
+            "Elfeffe\\FilamentTitleAndSlug\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Elfeffe\\FilamentTitleAndSlug\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Elfeffe\\FilamentTitleAndSlug\\FilamentTitleAndSlugServiceProvider"
+            ],
+            "aliases": {
+                "FilamentTitleAndSlug": "Elfeffe\\FilamentTitleAndSlug\\Facades\\FilamentTitleAndSlug"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
